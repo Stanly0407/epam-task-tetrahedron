@@ -3,6 +3,8 @@ package com.epam.task.third.service;
 import com.epam.task.third.entities.Point;
 import com.epam.task.third.entities.Tetrahedron;
 
+import java.util.List;
+
 public class FigureBaseDetector {
 
     public double getDistanceBetweenPoints(Point pointFirst, Point pointSecond) {
@@ -18,14 +20,17 @@ public class FigureBaseDetector {
 
     public boolean isFigureBaseOnCoordinatePlane(Tetrahedron tetrahedron) {
         double epsilon = 0.001;
-        Point pointA = tetrahedron.getPointA();
-        Point pointB = tetrahedron.getPointB();
-        Point pointC = tetrahedron.getPointC();
+        double ribLength = tetrahedron.getRibLength();
+        List<Point> points = tetrahedron.getPointsOnPlane();
+        Point pointA = points.get(0);
+        Point pointB = points.get(1);
+        Point pointC = points.get(2);
         double distancePointsAB = getDistanceBetweenPoints(pointA, pointB);
         double distancePointsBC = getDistanceBetweenPoints(pointB, pointC);
         double distancePointsCA = getDistanceBetweenPoints(pointC, pointA);
 
-        return (Math.abs(distancePointsAB - distancePointsBC) <= epsilon) && (Math.abs(distancePointsAB - distancePointsCA) <= epsilon);
-    } //сравнить с ребром
-
+        return (Math.abs(distancePointsAB - ribLength) <= epsilon) &&
+                (Math.abs(distancePointsAB - distancePointsBC) <= epsilon) &&
+                (Math.abs(distancePointsAB - distancePointsCA) <= epsilon);
+    }
 }

@@ -1,20 +1,18 @@
 package com.epam.task.third.entities;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Tetrahedron {
 
     double ribLength;
-    // points of the tetrahedron on the coordinate plane
-    Point pointA;
-    Point pointB;
-    Point pointC;
 
-    public Tetrahedron(double ribLength, Point pointA, Point pointB, Point pointC) {
+    List<Point> pointsOnPlane = new ArrayList<>();
+
+    public Tetrahedron(double ribLength, List<Point> pointsOnPlane) {
         this.ribLength = ribLength;
-        this.pointA = pointA;
-        this.pointB = pointB;
-        this.pointC = pointC;
+        this.pointsOnPlane = pointsOnPlane;
     }
 
     public double getRibLength() {
@@ -25,28 +23,12 @@ public class Tetrahedron {
         this.ribLength = ribLength;
     }
 
-    public Point getPointA() {
-        return pointA;
+    public List<Point> getPointsOnPlane() {
+        return pointsOnPlane;
     }
 
-    public void setPointA(Point pointA) {
-        this.pointA = pointA;
-    }
-
-    public Point getPointB() {
-        return pointB;
-    }
-
-    public void setPointB(Point pointB) {
-        this.pointB = pointB;
-    }
-
-    public Point getPointC() {
-        return pointC;
-    }
-
-    public void setPointC(Point pointC) {
-        this.pointC = pointC;
+    public void setPointsOnPlane(List<Point> pointsOnPlane) {
+        this.pointsOnPlane = pointsOnPlane;
     }
 
     @Override
@@ -55,23 +37,19 @@ public class Tetrahedron {
         if (o == null || getClass() != o.getClass()) {return false;}
         Tetrahedron that = (Tetrahedron) o;
         return Double.compare(that.ribLength, ribLength) == 0 &&
-                Objects.equals(pointA, that.pointA) &&
-                Objects.equals(pointB, that.pointB) &&
-                Objects.equals(pointC, that.pointC);
+                Objects.equals(pointsOnPlane, that.pointsOnPlane);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ribLength, pointA, pointB, pointC);
+        return Objects.hash(ribLength, pointsOnPlane);
     }
 
     @Override
     public String toString() {
         return "Tetrahedron{" +
                 "ribLength=" + ribLength +
-                ", pointA=" + pointA +
-                ", pointB=" + pointB +
-                ", pointC=" + pointC +
+                ", pointsOnPlane=" + pointsOnPlane +
                 '}';
     }
 }
