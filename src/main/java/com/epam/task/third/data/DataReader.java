@@ -3,7 +3,6 @@ package com.epam.task.third.data;
 import org.apache.log4j.Logger;
 
 import java.io.*;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public class DataReader {
 
     private final static Logger LOGGER = Logger.getLogger(DataReader.class);
 
-    public List<String> readDataFromFile(String filename) throws DataException, PathException, IOException { // parseFromFileBefore
+    public List<String> readDataFromFile(String filename) throws DataException, PathException, IOException {
         List<String> lines = new ArrayList<>();
 
         BufferedReader bufferedReader = null;
