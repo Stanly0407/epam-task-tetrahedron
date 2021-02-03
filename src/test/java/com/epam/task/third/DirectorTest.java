@@ -35,15 +35,11 @@ public class DirectorTest {
         when(dataValidator.validateLineContent(anyString())).thenReturn(true);
         when(dataValidator.validateIfNotEmpty(anyString())).thenReturn(true);
 
-        List<Point> points = new ArrayList<>();
         double ribLength = 8.0;
         Point pointA = new Point(2.0, 2.0);
-        points.add(pointA);
         Point pointB = new Point(8.0, 2.0);
-        points.add(pointB);
         Point pointC = new Point(5.0, 7.2);
-        points.add(pointC);
-        Tetrahedron tetrahedron = new Tetrahedron(ribLength, points);
+        Tetrahedron tetrahedron = new Tetrahedron(ribLength, pointA, pointB, pointC);
         List<Tetrahedron> expectedResult = new ArrayList<>();
         expectedResult.add(tetrahedron);
 

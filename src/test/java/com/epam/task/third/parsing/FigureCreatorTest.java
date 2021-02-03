@@ -17,14 +17,10 @@ public class FigureCreatorTest {
     @Test
     public void shouldCreateFigureFromValidLine() throws NumberInLineException {
         Tetrahedron createdTetrahedron = figureCreator.createFigure(RIGHT_LINE);
-        List<Point> points = new ArrayList<>();
         Point pointA = new Point(2.0, 2.0);
-        points.add(pointA);
         Point pointB = new Point(8.0, 2.0);
-        points.add(pointB);
         Point pointC = new Point(5.0, 7.5);
-        points.add(pointC);
-        Tetrahedron expectedTetrahedron = new Tetrahedron(8.0, points);
+        Tetrahedron expectedTetrahedron = new Tetrahedron(8.0, pointA, pointB, pointC);
         Assert.assertEquals(expectedTetrahedron, createdTetrahedron);
     }
 

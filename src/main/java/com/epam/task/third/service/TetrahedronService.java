@@ -6,24 +6,21 @@ import org.apache.log4j.Logger;
 
 import java.util.List;
 
-public class TetrahedronService implements FigureService{
+public class TetrahedronService implements FigureService {
 
-   private static final Logger LOGGER = Logger.getLogger(TetrahedronService.class);
+    private static final Logger LOGGER = Logger.getLogger(TetrahedronService.class);
 
     private static final double DELTA = 0.01;
 
-    // 1
     public double calculateSurfaceArea(Tetrahedron tetrahedron) {
         double ribLength = tetrahedron.getRibLength();
         return Math.sqrt(3) * Math.pow(ribLength, 2);
     }
 
-    //2
     public double calculateFigureVolume(Tetrahedron tetrahedron) {
         double ribLength = tetrahedron.getRibLength();
         return (1.0 / 12.0) * Math.pow(ribLength, 3) * Math.sqrt(2);
     }
-
 
     public double compareVolumesAfterSection(Tetrahedron tetrahedron) {
         double ribLengthOfSmallTetrahedron = getDistanceBetweenTwoPoints(tetrahedron);
@@ -34,34 +31,31 @@ public class TetrahedronService implements FigureService{
         return volumeOfSmallTetrahedron / volumeOfMainTetrahedron;
     }
 
-    public boolean isFigureDefinedShape(Tetrahedron tetrahedron){
-        List<Point> points = tetrahedron.getPointsOnPlane();
-        Point pointA = points.get(0);
-        Point pointB = points.get(1);
-        Point pointC = points.get(2);
+    public boolean isFigureDefinedShape(Tetrahedron tetrahedron) {
+        Point pointA = tetrahedron.getPointA();
+        Point pointB = tetrahedron.getPointB();
+        Point pointC = tetrahedron.getPointC();
         double distanceAB = getDistanceBetweenTwoPoints(pointA, pointB);
         double distanceBC = getDistanceBetweenTwoPoints(pointB, pointC);
         double distanceCA = getDistanceBetweenTwoPoints(pointC, pointA);
         double ribLength = tetrahedron.getRibLength();
 
-        return (Math.abs(ribLength - distanceAB)  > DELTA) &&
+        return (Math.abs(ribLength - distanceAB) > DELTA) &&
                 (Math.abs(ribLength - distanceBC) > DELTA) &&
                 (Math.abs(ribLength - distanceCA) > DELTA) &&
                 (Math.abs(distanceAB - distanceBC) < DELTA) &&
                 (Math.abs(distanceAB - distanceCA) < DELTA);
     }
 
-    //5 - находится ли основание фигуры на одной из координатных плоскостей
     public boolean isFigureBaseOnCoordinatePlane(Tetrahedron tetrahedron) {
         double ribLength = tetrahedron.getRibLength();
         double distancePointsAB = getDistanceBetweenTwoPoints(tetrahedron);
         return (Math.abs(distancePointsAB - ribLength) < DELTA);
     }
 
-    public double getDistanceBetweenTwoPoints (Tetrahedron tetrahedron){ //for validated shape of figure
-        List<Point> points = tetrahedron.getPointsOnPlane();
-        Point pointA = points.get(0);
-        Point pointB = points.get(1);
+    public double getDistanceBetweenTwoPoints(Tetrahedron tetrahedron) { //for validated shape of figure
+        Point pointA = tetrahedron.getPointA();
+        Point pointB = tetrahedron.getPointB();
         return getDistanceBetweenTwoPoints(pointA, pointB);
     }
 

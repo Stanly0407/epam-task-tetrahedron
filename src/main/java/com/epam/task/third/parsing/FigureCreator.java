@@ -11,17 +11,16 @@ import java.util.List;
 
 public class FigureCreator {
 
-    private static final String SEPARATOR = "[\\s]";
+    private static final String SEPARATOR = "[\\s+]";
+    private static final int QUANTITY_INLINE = 7;
 
     public Tetrahedron createFigure(String data) throws NumberInLineException {
-
         String[] arrayTetrahedronData = data.split(SEPARATOR);
         List<String> tetrahedronData = new ArrayList<>(Arrays.asList(arrayTetrahedronData));
         try {
             double ribLength = Double.parseDouble(tetrahedronData.get(0));
             List<Point> points = new ArrayList<>();
-            int numberParameter = 7;
-            for (int i = 1; i < numberParameter; i = i + 2) {
+            for (int i = 1; i < QUANTITY_INLINE; i = i + 2) {
                 String parameterX = tetrahedronData.get(i);
                 String parameterY = tetrahedronData.get(i + 1);
                 double coordinateX = Double.parseDouble(parameterX);
@@ -29,7 +28,10 @@ public class FigureCreator {
                 Point point = new Point(coordinateX, coordinateY);
                 points.add(point);
             }
-            return new Tetrahedron(ribLength, points);
+            Point pointA =points.get(0);
+            Point pointB =points.get(1);
+            Point pointC =points.get(2);
+            return new Tetrahedron(ribLength, pointA, pointB, pointC);
         } catch (NumberFormatException e) {
             throw new NumberInLineException("regex in class DataValidator isn't fully correct", e);
         }

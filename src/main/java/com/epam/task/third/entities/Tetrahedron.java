@@ -1,65 +1,84 @@
 package com.epam.task.third.entities;
 
-import java.util.List;
+
 import java.util.Objects;
 
 public class Tetrahedron {
 
     private double ribLength;
-    private List<Point> pointsOnPlane;
+    private Point pointA;
+    private Point pointB;
+    private Point pointC;
+
+    public Tetrahedron(double ribLength, Point pointA, Point pointB, Point pointC) {
+        this.ribLength = ribLength;
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.pointC = pointC;
+    }
 
     public Tetrahedron(double ribLength) {
         this.ribLength = ribLength;
     }
 
-    public Tetrahedron(double ribLength, List<Point> pointsOnPlane) {
-        this.pointsOnPlane = pointsOnPlane;
-        this.ribLength = ribLength;
-    }
-
     public Tetrahedron() {
-
     }
 
     public double getRibLength() {
         return ribLength;
     }
 
-    public List<Point> getPointsOnPlane() {
-        return pointsOnPlane;
-    }
-
     public void setRibLength(double ribLength) {
         this.ribLength = ribLength;
     }
 
-    public void setPointsOnPlane(List<Point> pointsOnPlane) {
-        this.pointsOnPlane = pointsOnPlane;
+    public Point getPointA() {
+        return pointA;
+    }
+
+    public void setPointA(Point pointA) {
+        this.pointA = pointA;
+    }
+
+    public Point getPointB() {
+        return pointB;
+    }
+
+    public void setPointB(Point pointB) {
+        this.pointB = pointB;
+    }
+
+    public Point getPointC() {
+        return pointC;
+    }
+
+    public void setPointC(Point pointC) {
+        this.pointC = pointC;
     }
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {
-            return true;
-        }
-        if (o == null || getClass() != o.getClass()) {
-            return false;
-        }
+        if (this == o) {return true;}
+        if (o == null || getClass() != o.getClass()) {return false;}
         Tetrahedron that = (Tetrahedron) o;
         return Double.compare(that.ribLength, ribLength) == 0 &&
-                Objects.equals(pointsOnPlane, that.pointsOnPlane);
+                Objects.equals(pointA, that.pointA) &&
+                Objects.equals(pointB, that.pointB) &&
+                Objects.equals(pointC, that.pointC);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ribLength, pointsOnPlane);
+        return Objects.hash(ribLength, pointA, pointB, pointC);
     }
 
     @Override
     public String toString() {
         return "Tetrahedron{" +
                 "ribLength=" + ribLength +
-                ", pointsOnPlane=" + pointsOnPlane +
+                ", pointA=" + pointA +
+                ", pointB=" + pointB +
+                ", pointC=" + pointC +
                 '}';
     }
 }
