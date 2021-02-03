@@ -3,6 +3,7 @@ package com.epam.task.third.data;
 import org.apache.log4j.Logger;
 
 import java.io.*;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +26,6 @@ public class DataReader {
             throw new PathException("file at the specified path doesn't exist", e);
         } catch (IOException e) {
             throw new DataException("file read error", e);
-//        } catch (ParseException e) {
-//            throw e; // own method!
         } finally {
             if (bufferedReader != null) {
                 bufferedReader.close();

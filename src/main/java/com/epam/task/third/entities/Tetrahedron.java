@@ -1,30 +1,36 @@
 package com.epam.task.third.entities;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Tetrahedron {
 
-    double ribLength;
+    private double ribLength;
+    private List<Point> pointsOnPlane;
 
-    List<Point> pointsOnPlane = new ArrayList<>();
+    public Tetrahedron(double ribLength) {
+        this.ribLength = ribLength;
+    }
 
     public Tetrahedron(double ribLength, List<Point> pointsOnPlane) {
-        this.ribLength = ribLength;
         this.pointsOnPlane = pointsOnPlane;
+        this.ribLength = ribLength;
+    }
+
+    public Tetrahedron() {
+
     }
 
     public double getRibLength() {
         return ribLength;
     }
 
-    public void setRibLength(double ribLength) {
-        this.ribLength = ribLength;
-    }
-
     public List<Point> getPointsOnPlane() {
         return pointsOnPlane;
+    }
+
+    public void setRibLength(double ribLength) {
+        this.ribLength = ribLength;
     }
 
     public void setPointsOnPlane(List<Point> pointsOnPlane) {
@@ -33,8 +39,12 @@ public class Tetrahedron {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Tetrahedron that = (Tetrahedron) o;
         return Double.compare(that.ribLength, ribLength) == 0 &&
                 Objects.equals(pointsOnPlane, that.pointsOnPlane);

@@ -17,7 +17,7 @@ public class DataReaderTest {
     @Test
     public void readDataTestShouldReturnStringsListFromLines () throws DataException, PathException, IOException {
         List<String> lines = new ArrayList<>(dataReader.readDataFromFile(TEST_DATA));
-        List<String> expectedLines = new ArrayList<>(Arrays.asList("5.0 1.0 2.0 6.0 7.0 9.0 2.0", "", "5.0 1.0 2.0 6.0 7.0 9.0 2.0"));
+        List<String> expectedLines = new ArrayList<>(Arrays.asList("6.0 2.0 2.0 8.0 2.0 5.0 7.2", "", "5.0 1.0 2.0 6.0 7.0 9.0 2.0"));
         Assert.assertEquals(expectedLines, lines);
     }
 
