@@ -18,7 +18,7 @@ public class TetrahedronSortingTest {
 
 
     @Before
-    public void getListT() {
+    public void createListTetrahedrons() {
         Point firstPointA = new Point(2.0, 3.8);
         Point secondPointA = new Point(3.0, 7.8);
         Point thirdPointA = new Point(4.0, 9.8);
