@@ -18,9 +18,6 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
     }
 
     public final void setSortingIndex(TetrahedronEnum sortingIndex) {
-        if (sortingIndex == null) {
-            throw new IllegalArgumentException();
-        }
         this.sortingIndex = sortingIndex;
     }
 
@@ -35,13 +32,12 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
         switch (sortingIndex) {
             case ID:
                 return first.getId() - second.getId();
-            //break
             case RIB_LENGTH:
-                return Double.compare(first.getRibLength() - second.getRibLength(), DELTA);
+                return Double.compare(Math.abs(first.getRibLength() - second.getRibLength()), DELTA);
             case POINT_A_COORDINATE_X:
-                return Double.compare(firstCoordinateX - secondCoordinateX, DELTA);
+                return Double.compare(Math.abs(firstCoordinateX - secondCoordinateX), DELTA);
             case POINT_A_COORDINATE_Y:
-                return Double.compare(firstCoordinateY - secondCoordinateY, DELTA);
+                return Double.compare(Math.abs(firstCoordinateY - secondCoordinateY), DELTA);
             default:
                 throw new EnumConstantNotPresentException(TetrahedronEnum.class, sortingIndex.name());
         }

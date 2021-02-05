@@ -5,15 +5,11 @@ import java.util.regex.Pattern;
 
 public class DataValidator {
 
+    private static final String DOUBLES_IN_LINE_PATTERN = "(\\d+(\\.\\d+)[\\s+]){6}(\\d+(\\.\\d+))";
+
     public boolean validateLineContent(String line) {
-        String onlyDigitsAndSpaces = "^([\\d -.]\\s*)+$";
-        Pattern linePattern = Pattern.compile(onlyDigitsAndSpaces);
+        Pattern linePattern = Pattern.compile(DOUBLES_IN_LINE_PATTERN);
         Matcher matcher = linePattern.matcher(line);
         return matcher.matches();
     }
-
-    public boolean validateIfNotEmpty(String line) {
-        return !line.isEmpty();
-    }
-
 }

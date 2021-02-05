@@ -8,8 +8,6 @@ import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
 import com.epam.task.third.parsing.NumberInLineException;
-import com.epam.task.third.repository.TetrahedronRepo;
-import com.epam.task.third.repository.TetrahedronRepoImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -35,26 +33,22 @@ public class DirectorTest {
 
         DataValidator dataValidator = Mockito.mock(DataValidator.class);
         when(dataValidator.validateLineContent(anyString())).thenReturn(true);
-        when(dataValidator.validateIfNotEmpty(anyString())).thenReturn(true);
 
         double ribLength = 8.0;
         Point pointA = new Point(2.0, 2.0);
         Point pointB = new Point(8.0, 2.0);
         Point pointC = new Point(5.0, 7.2);
         Tetrahedron tetrahedron = new Tetrahedron(ribLength, pointA, pointB, pointC);
-        List<Tetrahedron> expectedResult = new ArrayList<>();
-        expectedResult.add(tetrahedron);
+        List<Tetrahedron> expectedFigures = new ArrayList<>();
+        expectedFigures.add(tetrahedron);
 
         FigureCreator figureCreator = Mockito.mock(FigureCreator.class);
         when(figureCreator.createFigure(anyString())).thenReturn(tetrahedron);
 
-        TetrahedronRepoImpl repository = Mockito.mock(TetrahedronRepoImpl.class);
-    //    when(repository.addTetrahedron(anyString()));
+        Director director = new Director(dataReader, dataValidator, figureCreator);
 
-        Director director = new Director(dataReader, dataValidator, figureCreator, repository);
+        List<Tetrahedron> actualFigures = new ArrayList<>(director.createFiguresFromFileData(TEST_DATA));
 
-     //   List<Tetrahedron> actualArrays = new ArrayList<>(director.createFiguresFromFileData(TEST_DATA));
-
-     //   Assert.assertEquals(expectedResult, actualArrays);
+        Assert.assertEquals(expectedFigures, actualFigures);
     }
 }

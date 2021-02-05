@@ -7,25 +7,18 @@ import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
 import com.epam.task.third.parsing.NumberInLineException;
-import com.epam.task.third.repository.TetrahedronRepo;
-import com.epam.task.third.repository.TetrahedronRepoImpl;
+import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Director {
+
+    private static final Logger LOGGER = Logger.getLogger(Director.class);
+
     private DataReader dataReader;
     private DataValidator dataValidator;
     private FigureCreator figureCreator;
-    private TetrahedronRepoImpl repository;
-
-    public Director(DataReader dataReader, DataValidator dataValidator, FigureCreator figureCreator, TetrahedronRepoImpl repository) {
-        this.dataReader = dataReader;
-        this.dataValidator = dataValidator;
-        this.figureCreator = figureCreator;
-        this.repository = repository;
-    }
 
     public Director(DataReader dataReader, DataValidator dataValidator, FigureCreator figureCreator) {
         this.dataReader = dataReader;
@@ -33,18 +26,22 @@ public class Director {
         this.figureCreator = figureCreator;
     }
 
-    public void createFiguresFromFileData(String filename) {
+    public List<Tetrahedron> createFiguresFromFileData(String filename) {
+        List<Tetrahedron> createdFigures = new ArrayList<>();
         try {
             List<String> lines = new ArrayList<>(dataReader.readDataFromFile(filename));
-            for (String line : lines) {
-                if (dataValidator.validateLineContent(line) && dataValidator.validateIfNotEmpty(line)) {
+            for (int i = 0; i < lines.size(); i++) {
+                String line = lines.get(i);
+                if (dataValidator.validateLineContent(line)) {
                     Tetrahedron tetrahedron = figureCreator.createFigure(line);
-                    repository.addTetrahedron(tetrahedron);
+                    tetrahedron.setId(i);
+                    createdFigures.add(tetrahedron);
                 }
             }
-        } catch (DataException | PathException | NumberInLineException | IOException e) {
+        } catch (DataException | PathException | NumberInLineException e) {
+            LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
-            e.getMessage();
         }
+        return createdFigures;
     }
 }

@@ -10,33 +10,30 @@ public class DataReader {
 
     private final static Logger LOGGER = Logger.getLogger(DataReader.class);
 
-    public List<String> readDataFromFile(String filename) throws DataException, PathException, IOException {
+    public List<String> readDataFromFile(String filename) throws DataException, PathException {
         List<String> lines = new ArrayList<>();
 
         BufferedReader bufferedReader = null;
         try {
-            FileReader reader = new FileReader(filename);
-            bufferedReader = new BufferedReader(reader);
-            String line;
-            while ((line = bufferedReader.readLine()) != null) {
-                lines.add(line);
+            try {
+                FileReader reader = new FileReader(filename);
+                bufferedReader = new BufferedReader(reader);
+                String line;
+                while ((line = bufferedReader.readLine()) != null) {
+                    lines.add(line);
+                }
+            } catch (FileNotFoundException e) {
+                throw new PathException("file at the specified path doesn't exist", e);
+            } catch (IOException e) {
+                throw new DataException("file read error", e);
+            } finally {
+                if (bufferedReader != null) {
+                    bufferedReader.close();
+                }
             }
-        } catch (FileNotFoundException e) {
-            throw new PathException("file at the specified path doesn't exist", e);
         } catch (IOException e) {
-            throw new DataException("file read error", e);
-        } finally {
-            if (bufferedReader != null) {
-                bufferedReader.close();
-            }
+            LOGGER.warn(e.getMessage(), e);
         }
         return lines;
     }
 }
-
-
-
-
-
-
-

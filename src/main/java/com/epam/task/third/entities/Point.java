@@ -4,9 +4,8 @@ import java.util.Objects;
 
 public class Point {
 
-// point data
-   private double coordinateX;
-   private double coordinateY;
+    private double coordinateX;
+    private double coordinateY;
 
     public Point(double coordinateX, double coordinateY) {
         this.coordinateX = coordinateX;
@@ -31,8 +30,12 @@ public class Point {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Point point = (Point) o;
         return Double.compare(point.coordinateX, coordinateX) == 0 &&
                 Double.compare(point.coordinateY, coordinateY) == 0;
@@ -41,13 +44,5 @@ public class Point {
     @Override
     public int hashCode() {
         return Objects.hash(coordinateX, coordinateY);
-    }
-
-    @Override
-    public String toString() {
-        return "Point{" +
-                "coordinateX=" + coordinateX +
-                ", coordinateY=" + coordinateY +
-                '}';
     }
 }

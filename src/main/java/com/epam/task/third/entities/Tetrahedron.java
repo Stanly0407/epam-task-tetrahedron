@@ -1,6 +1,5 @@
 package com.epam.task.third.entities;
 
-
 import java.util.Objects;
 
 public class Tetrahedron implements Comparable<Tetrahedron> {
@@ -81,8 +80,12 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
         Tetrahedron that = (Tetrahedron) o;
         return id == that.id &&
                 Double.compare(that.ribLength, ribLength) == 0 &&
@@ -96,24 +99,13 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
         return Objects.hash(id, ribLength, pointA, pointB, pointC);
     }
 
-
     @Override
     public int compareTo(Tetrahedron tetrahedron) {
-        if (this.ribLength < tetrahedron.ribLength)
+        if (this.ribLength < tetrahedron.ribLength) {
             return -1;
-        else if (tetrahedron.ribLength < this.ribLength)
+        } else if (tetrahedron.ribLength < this.ribLength) {
             return 1;
+        }
         return 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Tetrahedron{" +
-                "id=" + id +
-                ", ribLength=" + ribLength +
-                ", pointA=" + pointA +
-                ", pointB=" + pointB +
-                ", pointC=" + pointC +
-                '}';
     }
 }

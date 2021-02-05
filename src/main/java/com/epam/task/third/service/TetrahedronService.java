@@ -27,7 +27,7 @@ public class TetrahedronService implements FigureService {
 
     public double compareVolumes(Tetrahedron tetrahedron) {
         double ribLengthOfSmallTetrahedron = getDistanceBetweenTwoPoints(tetrahedron);
-        LOGGER.info("getDistanceBetweenTwoPoints worked");  //CHANGE!!!!
+        LOGGER.debug("method getDistanceBetweenTwoPoints worked");
         Tetrahedron smallTetrahedron = new Tetrahedron(ribLengthOfSmallTetrahedron);
         double volumeOfMainTetrahedron = calculateVolume(tetrahedron);
         double volumeOfSmallTetrahedron = calculateVolume(smallTetrahedron);
@@ -56,7 +56,7 @@ public class TetrahedronService implements FigureService {
         return (Math.abs(distancePointsAB - ribLength) < DELTA);
     }
 
-    public double getDistanceBetweenTwoPoints(Tetrahedron tetrahedron) { //for validated shape of figure
+    public double getDistanceBetweenTwoPoints(Tetrahedron tetrahedron) {
         Point pointA = tetrahedron.getPointA();
         Point pointB = tetrahedron.getPointB();
         return getDistanceBetweenTwoPoints(pointA, pointB);

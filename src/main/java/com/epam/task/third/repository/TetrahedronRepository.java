@@ -4,9 +4,7 @@ import com.epam.task.third.entities.Tetrahedron;
 
 import java.util.List;
 
-public interface TetrahedronRepo {
-
-   // Tetrahedron getTetrahedron(Long id);
+public interface TetrahedronRepository {
 
     void addTetrahedron(Tetrahedron tetrahedron);
 
@@ -14,8 +12,5 @@ public interface TetrahedronRepo {
 
     void updateTetrahedron(Tetrahedron tetrahedron);
 
-    List query(TetrahedronSpecificationSearchingOne specification);
-
-   // List<Tetrahedron> getAllTetrahedrons();
-
+    List<Tetrahedron> query(TetrahedronSpecification specification);
 }
