@@ -22,33 +22,33 @@ public class TetrahedronServiceTest {
     }
 
     @Test
-    public void shouldCalculateFigureVolumeTest() {
+    public void shouldCalculateVolumeTest() {
         double expectedVolume = 60.3397;
-        double actualVolume = tetrahedronService.calculateFigureVolume(testedTetrahedron);
+        double actualVolume = tetrahedronService.calculateVolume(testedTetrahedron);
         Assert.assertEquals(expectedVolume, actualVolume, DELTA);
     }
 
     @Test
-    public void shouldCompareVolumesAfterSectionTest() {
+    public void shouldCompareVolumesTest() {
         double expectedResult = 0.4218;
-        double actualResult = tetrahedronService.compareVolumesAfterSection(testedTetrahedron);
+        double actualResult = tetrahedronService.compareVolumes(testedTetrahedron);
         Assert.assertEquals(expectedResult, actualResult, DELTA);
     }
 
     @Test
-    public void isFigureDefinedShapeShouldReturnTrue() {
-        boolean actualResult = tetrahedronService.isFigureDefinedShape(testedTetrahedron);
+    public void isFigureTetrahedronShouldReturnTrue() {
+        boolean actualResult = tetrahedronService.isFigureTetrahedron(testedTetrahedron);
         Assert.assertTrue(actualResult);
     }
 
     @Test
-    public void isFigureDefinedShapeShouldReturnFalse() {
+    public void isFigureTetrahedronShouldReturnFalse() {
         double ribLength = 7.0;
         Point pointA = new Point(1.2, 2.0);
         Point pointB = new Point(9.0, 2.0);
         Point pointC = new Point(5.0, 8.93);
         Tetrahedron notTetrahedron = new Tetrahedron(ribLength, pointA, pointB, pointC);
-        boolean actualResult = tetrahedronService.isFigureDefinedShape(notTetrahedron);
+        boolean actualResult = tetrahedronService.isFigureTetrahedron(notTetrahedron);
         Assert.assertFalse(actualResult);
     }
 

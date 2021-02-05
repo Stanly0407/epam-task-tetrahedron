@@ -6,11 +6,11 @@ public interface FigureService {
 
     double calculateSurfaceArea(Tetrahedron tetrahedron);
 
-    double calculateFigureVolume(Tetrahedron tetrahedron);
+    double calculateVolume(Tetrahedron tetrahedron);
 
-    double compareVolumesAfterSection(Tetrahedron tetrahedron);
+    double compareVolumes(Tetrahedron tetrahedron);
 
-    boolean isFigureDefinedShape(Tetrahedron tetrahedron);
+    boolean isFigureTetrahedron(Tetrahedron tetrahedron);
 
     boolean isFigureBaseOnCoordinatePlane(Tetrahedron tetrahedron);
 

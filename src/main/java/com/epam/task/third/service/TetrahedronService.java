@@ -4,34 +4,37 @@ import com.epam.task.third.entities.Point;
 import com.epam.task.third.entities.Tetrahedron;
 import org.apache.log4j.Logger;
 
-import java.util.List;
-
 public class TetrahedronService implements FigureService {
 
     private static final Logger LOGGER = Logger.getLogger(TetrahedronService.class);
 
     private static final double DELTA = 0.01;
+    private static final double VOLUME_FORMULA_PROPORTION = 1.0 / 12.0;
+    private static final double ROOT_OF_THREE = Math.sqrt(3);
+    private static final double ROOT_OF_TWO = Math.sqrt(2);
+    private static final double SECOND_DEGREE = 2;
+    private static final double THIRD_DEGREE = 3;
 
     public double calculateSurfaceArea(Tetrahedron tetrahedron) {
         double ribLength = tetrahedron.getRibLength();
-        return Math.sqrt(3) * Math.pow(ribLength, 2);
+        return ROOT_OF_THREE * Math.pow(ribLength, SECOND_DEGREE);
     }
 
-    public double calculateFigureVolume(Tetrahedron tetrahedron) {
+    public double calculateVolume(Tetrahedron tetrahedron) {
         double ribLength = tetrahedron.getRibLength();
-        return (1.0 / 12.0) * Math.pow(ribLength, 3) * Math.sqrt(2);
+        return VOLUME_FORMULA_PROPORTION * Math.pow(ribLength, THIRD_DEGREE) * ROOT_OF_TWO;
     }
 
-    public double compareVolumesAfterSection(Tetrahedron tetrahedron) {
+    public double compareVolumes(Tetrahedron tetrahedron) {
         double ribLengthOfSmallTetrahedron = getDistanceBetweenTwoPoints(tetrahedron);
-        LOGGER.info("getDistanceBetweenTwoPoints worked");
+        LOGGER.info("getDistanceBetweenTwoPoints worked");  //CHANGE!!!!
         Tetrahedron smallTetrahedron = new Tetrahedron(ribLengthOfSmallTetrahedron);
-        double volumeOfMainTetrahedron = calculateFigureVolume(tetrahedron);
-        double volumeOfSmallTetrahedron = calculateFigureVolume(smallTetrahedron);
+        double volumeOfMainTetrahedron = calculateVolume(tetrahedron);
+        double volumeOfSmallTetrahedron = calculateVolume(smallTetrahedron);
         return volumeOfSmallTetrahedron / volumeOfMainTetrahedron;
     }
 
-    public boolean isFigureDefinedShape(Tetrahedron tetrahedron) {
+    public boolean isFigureTetrahedron(Tetrahedron tetrahedron) {
         Point pointA = tetrahedron.getPointA();
         Point pointB = tetrahedron.getPointB();
         Point pointC = tetrahedron.getPointC();
@@ -65,7 +68,7 @@ public class TetrahedronService implements FigureService {
         double secondPointCoordinateX = pointB.getCoordinateX();
         double secondPointCoordinateY = pointB.getCoordinateY();
 
-        return Math.sqrt(Math.pow((firstPointCoordinateX - secondPointCoordinateX), 2)
-                + (Math.pow((firstPointCoordinateY - secondPointCoordinateY), 2)));
+        return Math.sqrt(Math.pow((firstPointCoordinateX - secondPointCoordinateX), SECOND_DEGREE)
+                + (Math.pow((firstPointCoordinateY - secondPointCoordinateY), SECOND_DEGREE)));
     }
 }

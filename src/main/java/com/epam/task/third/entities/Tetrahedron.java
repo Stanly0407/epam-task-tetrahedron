@@ -3,8 +3,9 @@ package com.epam.task.third.entities;
 
 import java.util.Objects;
 
-public class Tetrahedron {
+public class Tetrahedron implements Comparable<Tetrahedron> {
 
+    private int id;
     private double ribLength;
     private Point pointA;
     private Point pointB;
@@ -22,6 +23,20 @@ public class Tetrahedron {
     }
 
     public Tetrahedron() {
+    }
+
+    public Tetrahedron(int id, double ribLength, Point pointA, Point pointB, Point pointC) {
+        this.id = id;
+        this.ribLength = ribLength;
+        this.pointA = pointA;
+        this.pointB = pointB;
+        this.pointC = pointC;
+    }
+
+    public Tetrahedron(int id, double ribLength, Point pointA) {
+        this.id = id;
+        this.ribLength = ribLength;
+        this.pointA = pointA;
     }
 
     public double getRibLength() {
@@ -56,12 +71,21 @@ public class Tetrahedron {
         this.pointC = pointC;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
     public boolean equals(Object o) {
-        if (this == o) {return true;}
-        if (o == null || getClass() != o.getClass()) {return false;}
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         Tetrahedron that = (Tetrahedron) o;
-        return Double.compare(that.ribLength, ribLength) == 0 &&
+        return id == that.id &&
+                Double.compare(that.ribLength, ribLength) == 0 &&
                 Objects.equals(pointA, that.pointA) &&
                 Objects.equals(pointB, that.pointB) &&
                 Objects.equals(pointC, that.pointC);
@@ -69,13 +93,24 @@ public class Tetrahedron {
 
     @Override
     public int hashCode() {
-        return Objects.hash(ribLength, pointA, pointB, pointC);
+        return Objects.hash(id, ribLength, pointA, pointB, pointC);
+    }
+
+
+    @Override
+    public int compareTo(Tetrahedron tetrahedron) {
+        if (this.ribLength < tetrahedron.ribLength)
+            return -1;
+        else if (tetrahedron.ribLength < this.ribLength)
+            return 1;
+        return 0;
     }
 
     @Override
     public String toString() {
         return "Tetrahedron{" +
-                "ribLength=" + ribLength +
+                "id=" + id +
+                ", ribLength=" + ribLength +
                 ", pointA=" + pointA +
                 ", pointB=" + pointB +
                 ", pointC=" + pointC +

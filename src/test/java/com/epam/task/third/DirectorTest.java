@@ -8,6 +8,8 @@ import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
 import com.epam.task.third.parsing.NumberInLineException;
+import com.epam.task.third.repository.TetrahedronRepo;
+import com.epam.task.third.repository.TetrahedronRepoImpl;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -46,10 +48,13 @@ public class DirectorTest {
         FigureCreator figureCreator = Mockito.mock(FigureCreator.class);
         when(figureCreator.createFigure(anyString())).thenReturn(tetrahedron);
 
-        Director director = new Director(dataReader, dataValidator, figureCreator);
+        TetrahedronRepoImpl repository = Mockito.mock(TetrahedronRepoImpl.class);
+    //    when(repository.addTetrahedron(anyString()));
 
-        List<Tetrahedron> actualArrays = new ArrayList<>(director.createFiguresFromFileData(TEST_DATA));
+        Director director = new Director(dataReader, dataValidator, figureCreator, repository);
 
-        Assert.assertEquals(expectedResult, actualArrays);
+     //   List<Tetrahedron> actualArrays = new ArrayList<>(director.createFiguresFromFileData(TEST_DATA));
+
+     //   Assert.assertEquals(expectedResult, actualArrays);
     }
 }
