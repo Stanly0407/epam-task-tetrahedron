@@ -6,8 +6,8 @@ public class SearchingByIdSpecification implements TetrahedronSpecification {
 
     private int desiredId;
 
-    public SearchingByIdSpecification(int desiredRibLength) {
-        this.desiredId = desiredRibLength;
+    public SearchingByIdSpecification(int desiredId) {
+        this.desiredId = desiredId;
     }
 
     @Override
