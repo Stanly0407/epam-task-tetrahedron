@@ -9,7 +9,7 @@ public class DataValidatorTest {
 
     private static final String RIGHT_LINE = "5.0 1.0 2.0 6.0 7.0 9.0 2.0";
     private static final String WRONG_LINE = "g 1.0 c 6.0p 7.0 9.0 2.=,0 ";
-    private static final String WRONG_QUANTITY_IN_LINE = "5.0 1.0 2.0 6.0 7.0 9.0 2.0 3.1 ";
+    private static final String WRONG_QUANTITY_IN_LINE = "5.0 1.0 2.0 6.0 7.0 9.0 2.0 3.1";
     private static final String EMPTY_LINE = "";
 
     @Test

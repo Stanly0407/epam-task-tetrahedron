@@ -29,17 +29,23 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
         double secondCoordinateX = secondPointA.getCoordinateX();
         double firstCoordinateY = firstPointA.getCoordinateY();
         double secondCoordinateY = secondPointA.getCoordinateY();
+        int compareResult;
         switch (sortingIndex) {
             case ID:
-                return first.getId() - second.getId();
+                compareResult = first.getId() - second.getId();
+                break;
             case RIB_LENGTH:
-                return Double.compare(Math.abs(first.getRibLength() - second.getRibLength()), DELTA);
+                compareResult = Double.compare(Math.abs(first.getRibLength() - second.getRibLength()), DELTA);
+                break;
             case POINT_A_COORDINATE_X:
-                return Double.compare(Math.abs(firstCoordinateX - secondCoordinateX), DELTA);
+                compareResult = Double.compare(Math.abs(firstCoordinateX - secondCoordinateX), DELTA);
+                break;
             case POINT_A_COORDINATE_Y:
-                return Double.compare(Math.abs(firstCoordinateY - secondCoordinateY), DELTA);
+                compareResult = Double.compare(Math.abs(firstCoordinateY - secondCoordinateY), DELTA);
+                break;
             default:
                 throw new EnumConstantNotPresentException(TetrahedronEnum.class, sortingIndex.name());
         }
+        return compareResult;
     }
 }
