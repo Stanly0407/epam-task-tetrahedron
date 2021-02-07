@@ -17,11 +17,16 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
         this.pointC = pointC;
     }
 
+    public Tetrahedron() {
+    }
+
     public Tetrahedron(double ribLength) {
         this.ribLength = ribLength;
     }
 
-    public Tetrahedron() {
+    public Tetrahedron(int id, double ribLength) {
+        this.id = id;
+        this.ribLength = ribLength;
     }
 
     public Tetrahedron(int id, double ribLength, Point pointA, Point pointB, Point pointC) {
@@ -107,5 +112,16 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
             return 1;
         }
         return 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Tetrahedron{" +
+                "id=" + id +
+                ", ribLength=" + ribLength +
+                ", pointA=" + pointA +
+                ", pointB=" + pointB +
+                ", pointC=" + pointC +
+                '}';
     }
 }

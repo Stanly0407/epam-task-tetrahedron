@@ -3,36 +3,28 @@ package com.epam.task.third.service;
 import com.epam.task.third.entities.Tetrahedron;
 
 import java.util.List;
-import java.util.TreeSet;
 
-public class TetrahedronSorting implements FigureSorting {
-    private static final TetrahedronComparator COMPARATOR_BY_ID = new TetrahedronComparator(TetrahedronEnum.ID);
-    private static final TetrahedronComparator COMPARATOR_BY_RIB_LENGTH = new TetrahedronComparator(TetrahedronEnum.RIB_LENGTH);
-    private static final TetrahedronComparator COMPARATOR_BY_COORDINATE_X = new TetrahedronComparator(TetrahedronEnum.POINT_A_COORDINATE_X);
-    private static final TetrahedronComparator COMPARATOR_BY_COORDINATE_Y = new TetrahedronComparator(TetrahedronEnum.POINT_A_COORDINATE_Y);
 
-    public TreeSet<Tetrahedron> getTetrahedronsSortedById(List<Tetrahedron> tetrahedrons) {
-        TreeSet<Tetrahedron> sortedTetrahedrons = new TreeSet<>(COMPARATOR_BY_ID);
-        sortedTetrahedrons.addAll(tetrahedrons);
-        return sortedTetrahedrons;
+public class TetrahedronSorting  {
+    private static final TetrahedronComparator COMPARATOR_BY_ID = new TetrahedronComparator(SortingEnum.ID);
+    private static final TetrahedronComparator COMPARATOR_BY_RIB_LENGTH = new TetrahedronComparator(SortingEnum.RIB_LENGTH);
+    private static final TetrahedronComparator COMPARATOR_BY_COORDINATE_X = new TetrahedronComparator(SortingEnum.POINT_A_COORDINATE_X);
+    private static final TetrahedronComparator COMPARATOR_BY_COORDINATE_Y = new TetrahedronComparator(SortingEnum.POINT_A_COORDINATE_Y);
+
+    public void sortById(List<Tetrahedron> tetrahedrons) {
+          tetrahedrons.sort(COMPARATOR_BY_ID);
     }
 
-    public TreeSet<Tetrahedron> getTetrahedronsSortedByRibLength(List<Tetrahedron> tetrahedrons) {
-        TreeSet<Tetrahedron> sortedTetrahedrons = new TreeSet<>(COMPARATOR_BY_RIB_LENGTH);
-        sortedTetrahedrons.addAll(tetrahedrons);
-        return sortedTetrahedrons;
+    public void sortByRibLength(List<Tetrahedron> tetrahedrons) {
+         tetrahedrons.sort(COMPARATOR_BY_RIB_LENGTH);
     }
 
-    public TreeSet<Tetrahedron> getTetrahedronsSortedByCoordinateX(List<Tetrahedron> tetrahedrons) {
-        TreeSet<Tetrahedron> sortedTetrahedrons = new TreeSet<>(COMPARATOR_BY_COORDINATE_X);
-        sortedTetrahedrons.addAll(tetrahedrons);
-        return sortedTetrahedrons;
+    public void sortByCoordinateX(List<Tetrahedron> tetrahedrons) {
+        tetrahedrons.sort(COMPARATOR_BY_COORDINATE_X);
     }
 
-    public TreeSet<Tetrahedron> getTetrahedronsSortedByCoordinateY(List<Tetrahedron> tetrahedrons) {
-        TreeSet<Tetrahedron> sortedTetrahedrons = new TreeSet<>(COMPARATOR_BY_COORDINATE_Y);
-        sortedTetrahedrons.addAll(tetrahedrons);
-        return sortedTetrahedrons;
+    public void  sortByCoordinateY(List<Tetrahedron> tetrahedrons) {
+        tetrahedrons.sort(COMPARATOR_BY_COORDINATE_Y);
     }
 
 }

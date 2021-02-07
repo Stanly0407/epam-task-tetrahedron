@@ -31,7 +31,7 @@ public class TetrahedronServiceTest {
     @Test
     public void shouldCompareVolumesTest() {
         double expectedResult = 0.4218;
-        double actualResult = tetrahedronService.compareVolumes(testedTetrahedron);
+        double actualResult = tetrahedronService.proportionPartVolumes(testedTetrahedron);
         Assert.assertEquals(expectedResult, actualResult, DELTA);
     }
 

@@ -12,7 +12,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -26,7 +25,7 @@ public class DirectorTest {
     private final static String TEST_DATA = "./src/test/resources/input.txt";
 
     @Test
-    public void shouldMakeValidArraysFromFileData() throws DataException, PathException, NumberInLineException, IOException { //not in full
+    public void shouldMakeValidArraysFromFileData() throws DataException, PathException, NumberInLineException {
 
         DataReader dataReader = Mockito.mock(DataReader.class);
         when(dataReader.readDataFromFile(anyString())).thenReturn(Collections.singletonList(TEST_DATA));

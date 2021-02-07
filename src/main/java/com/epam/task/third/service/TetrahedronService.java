@@ -4,7 +4,7 @@ import com.epam.task.third.entities.Point;
 import com.epam.task.third.entities.Tetrahedron;
 import org.apache.log4j.Logger;
 
-public class TetrahedronService implements FigureService {
+public class TetrahedronService {
 
     private static final Logger LOGGER = Logger.getLogger(TetrahedronService.class);
 
@@ -25,7 +25,7 @@ public class TetrahedronService implements FigureService {
         return VOLUME_FORMULA_PROPORTION * Math.pow(ribLength, THIRD_DEGREE) * ROOT_OF_TWO;
     }
 
-    public double compareVolumes(Tetrahedron tetrahedron) {
+    public double proportionPartVolumes(Tetrahedron tetrahedron) {
         double ribLengthOfSmallTetrahedron = getDistanceBetweenTwoPoints(tetrahedron);
         LOGGER.debug("method getDistanceBetweenTwoPoints worked");
         Tetrahedron smallTetrahedron = new Tetrahedron(ribLengthOfSmallTetrahedron);

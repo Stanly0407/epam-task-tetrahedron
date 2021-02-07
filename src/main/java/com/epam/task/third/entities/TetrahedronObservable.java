@@ -1,9 +1,13 @@
 package com.epam.task.third.entities;
 
+import org.apache.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class TetrahedronObservable extends Tetrahedron implements Observable {
+
+    private static final Logger LOGGER = Logger.getLogger(TetrahedronObservable.class);
 
     private List<Observer> observers = new ArrayList<>();
 
@@ -19,7 +23,8 @@ public class TetrahedronObservable extends Tetrahedron implements Observable {
 
     public void notifyObservers() {
         for (Observer observer : observers){
-            observer.update(this);
+            observer.updateParameters(this);
         }
+        LOGGER.debug("All observers notified about changing Tetrahedron");
     }
 }

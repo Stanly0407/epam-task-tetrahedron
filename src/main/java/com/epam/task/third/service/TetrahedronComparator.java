@@ -6,18 +6,17 @@ import com.epam.task.third.entities.Tetrahedron;
 import java.util.Comparator;
 
 public class TetrahedronComparator implements Comparator<Tetrahedron> {
-    private static final double DELTA = 0.01;
-    private TetrahedronEnum sortingIndex;
+    private SortingEnum sortingIndex;
 
-    public TetrahedronComparator(TetrahedronEnum sortingIndex) {
+    public TetrahedronComparator(SortingEnum sortingIndex) {
         this.sortingIndex = sortingIndex;
     }
 
-    public TetrahedronEnum getSortingIndex() {
+    public SortingEnum getSortingIndex() {
         return sortingIndex;
     }
 
-    public final void setSortingIndex(TetrahedronEnum sortingIndex) {
+    public final void setSortingIndex(SortingEnum sortingIndex) {
         this.sortingIndex = sortingIndex;
     }
 
@@ -32,19 +31,19 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
         int compareResult;
         switch (sortingIndex) {
             case ID:
-                compareResult = first.getId() - second.getId();
+                compareResult = Integer.compare(first.getId(), second.getId());
                 break;
             case RIB_LENGTH:
-                compareResult = Double.compare(Math.abs(first.getRibLength() - second.getRibLength()), DELTA);
+                compareResult = Double.compare(first.getRibLength(), second.getRibLength());
                 break;
             case POINT_A_COORDINATE_X:
-                compareResult = Double.compare(Math.abs(firstCoordinateX - secondCoordinateX), DELTA);
+                compareResult = Double.compare(firstCoordinateX, secondCoordinateX);
                 break;
             case POINT_A_COORDINATE_Y:
-                compareResult = Double.compare(Math.abs(firstCoordinateY - secondCoordinateY), DELTA);
+                compareResult = Double.compare(firstCoordinateY, secondCoordinateY);
                 break;
             default:
-                throw new EnumConstantNotPresentException(TetrahedronEnum.class, sortingIndex.name());
+                throw new EnumConstantNotPresentException(SortingEnum.class, sortingIndex.name());
         }
         return compareResult;
     }
