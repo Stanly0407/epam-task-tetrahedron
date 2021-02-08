@@ -12,7 +12,7 @@ public class FigureCreatorTest {
     private static final String WRONG_LINE = "g 1.0 c 6.0p 7.0 9.0 2.=,0";
 
     @Test
-    public void shouldCreateFigureFromValidLine() throws NumberInLineException {
+    public void shouldCreateFigureFromValidLine() throws ValidateProcessException {
         Tetrahedron createdTetrahedron = figureCreator.createFigure(RIGHT_LINE);
         Point pointA = new Point(2.0, 2.0);
         Point pointB = new Point(8.0, 2.0);
@@ -21,8 +21,8 @@ public class FigureCreatorTest {
         Assert.assertEquals(expectedTetrahedron, createdTetrahedron);
     }
 
-    @Test(expected = NumberInLineException.class)
-    public void createFigureFromInvalidLineShouldTrowsNumberInLineException() throws NumberInLineException {
+    @Test(expected = ValidateProcessException.class)
+    public void createFigureFromInvalidLineShouldTrowsNumberInLineException() throws ValidateProcessException {
         Tetrahedron tetrahedron = figureCreator.createFigure(WRONG_LINE);
     }
 }

@@ -24,6 +24,10 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
         this.ribLength = ribLength;
     }
 
+    public Tetrahedron(int id) {
+        this.id = id;
+    }
+
     public Tetrahedron(int id, double ribLength) {
         this.id = id;
         this.ribLength = ribLength;

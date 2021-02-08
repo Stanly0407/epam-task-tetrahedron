@@ -16,6 +16,3 @@ public class SearchingByRibLengthSpecification implements TetrahedronSpecificati
         return Math.abs(ribLength - desiredRibLength) < DELTA;
     }
 }
-
-
-

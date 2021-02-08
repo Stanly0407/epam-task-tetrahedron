@@ -16,6 +16,3 @@ public class SearchingByIdSpecification implements TetrahedronSpecification {
         return tetrahedronId == desiredId;
     }
 }
-
-
-

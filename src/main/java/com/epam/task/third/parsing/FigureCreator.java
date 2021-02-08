@@ -14,7 +14,7 @@ public class FigureCreator {
     private static final String SEPARATOR = "[\\s+]";
     private static final int ELEMENTS_IN_LINE = 7;
 
-    public Tetrahedron createFigure(String data) throws NumberInLineException {
+    public Tetrahedron createFigure(String data) throws ValidateProcessException {
         String[] arrayTetrahedronData = data.split(SEPARATOR);
         List<String> tetrahedronData = new ArrayList<>(Arrays.asList(arrayTetrahedronData));
         try {
@@ -25,7 +25,7 @@ public class FigureCreator {
             Point pointC = points.get(2);
             return new Tetrahedron(ribLength, pointA, pointB, pointC);
         } catch (NumberFormatException e) {
-            throw new NumberInLineException("regex in class DataValidator isn't fully correct", e);
+            throw new ValidateProcessException("regex in class DataValidator isn't fully correct", e);
         }
     }
 

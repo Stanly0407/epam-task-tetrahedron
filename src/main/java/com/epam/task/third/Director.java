@@ -6,7 +6,7 @@ import com.epam.task.third.data.PathException;
 import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
-import com.epam.task.third.parsing.NumberInLineException;
+import com.epam.task.third.parsing.ValidateProcessException;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -38,7 +38,7 @@ public class Director {
                     createdFigures.add(tetrahedron);
                 }
             }
-        } catch (DataException | PathException | NumberInLineException e) {
+        } catch (DataException | PathException | ValidateProcessException e) {
             LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
