@@ -6,17 +6,17 @@ import com.epam.task.third.entities.Tetrahedron;
 import java.util.Comparator;
 
 public class TetrahedronComparator implements Comparator<Tetrahedron> {
-    private SortingEnum sortingIndex;
+    private SortingIndexesEnum sortingIndex;
 
-    public TetrahedronComparator(SortingEnum sortingIndex) {
+    public TetrahedronComparator(SortingIndexesEnum sortingIndex) {
         this.sortingIndex = sortingIndex;
     }
 
-    public SortingEnum getSortingIndex() {
+    public SortingIndexesEnum getSortingIndex() {
         return sortingIndex;
     }
 
-    public final void setSortingIndex(SortingEnum sortingIndex) {
+    public final void setSortingIndex(SortingIndexesEnum sortingIndex) {
         this.sortingIndex = sortingIndex;
     }
 
@@ -43,7 +43,7 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
                 compareResult = Double.compare(firstCoordinateY, secondCoordinateY);
                 break;
             default:
-                throw new EnumConstantNotPresentException(SortingEnum.class, sortingIndex.name());
+                throw new EnumConstantNotPresentException(SortingIndexesEnum.class, sortingIndex.name());
         }
         return compareResult;
     }

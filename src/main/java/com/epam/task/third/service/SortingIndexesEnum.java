@@ -1,6 +1,6 @@
 package com.epam.task.third.service;
 
-public enum SortingEnum {
+public enum SortingIndexesEnum {
     ID,
     RIB_LENGTH,
     POINT_A_COORDINATE_X,
