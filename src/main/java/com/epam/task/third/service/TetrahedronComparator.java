@@ -2,10 +2,13 @@ package com.epam.task.third.service;
 
 import com.epam.task.third.entities.Point;
 import com.epam.task.third.entities.Tetrahedron;
+import org.apache.log4j.Logger;
 
 import java.util.Comparator;
 
 public class TetrahedronComparator implements Comparator<Tetrahedron> {
+    private static final Logger LOGGER = Logger.getLogger(TetrahedronComparator.class);
+
     private SortingIndexesEnum sortingIndex;
 
     public TetrahedronComparator(SortingIndexesEnum sortingIndex) {
@@ -28,7 +31,7 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
         double secondCoordinateX = secondPointA.getCoordinateX();
         double firstCoordinateY = firstPointA.getCoordinateY();
         double secondCoordinateY = secondPointA.getCoordinateY();
-        int compareResult;
+        int compareResult = 0;
         switch (sortingIndex) {
             case ID:
                 compareResult = Integer.compare(first.getId(), second.getId());
@@ -42,8 +45,6 @@ public class TetrahedronComparator implements Comparator<Tetrahedron> {
             case POINT_A_COORDINATE_Y:
                 compareResult = Double.compare(firstCoordinateY, secondCoordinateY);
                 break;
-            default:
-                throw new EnumConstantNotPresentException(SortingIndexesEnum.class, sortingIndex.name());
         }
         return compareResult;
     }
