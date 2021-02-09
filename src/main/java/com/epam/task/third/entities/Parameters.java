@@ -25,11 +25,4 @@ public class Parameters {
         this.volume = volume;
     }
 
-    @Override
-    public String toString() {
-        return "Parameters{" +
-                "surfaceArea=" + surfaceArea +
-                ", volume=" + volume +
-                '}';
-    }
 }

@@ -4,7 +4,6 @@ import com.epam.task.third.entities.Tetrahedron;
 
 import java.util.List;
 
-
 public class TetrahedronSorting  {
     private static final TetrahedronComparator COMPARATOR_BY_ID = new TetrahedronComparator(SortingIndexesEnum.ID);
     private static final TetrahedronComparator COMPARATOR_BY_RIB_LENGTH = new TetrahedronComparator(SortingIndexesEnum.RIB_LENGTH);
