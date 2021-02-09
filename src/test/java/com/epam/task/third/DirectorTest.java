@@ -10,7 +10,9 @@ import com.epam.task.third.parsing.FigureCreator;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.w3c.dom.ls.LSOutput;
 
+import javax.crypto.spec.PSource;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;

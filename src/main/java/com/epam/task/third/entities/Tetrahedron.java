@@ -2,7 +2,7 @@ package com.epam.task.third.entities;
 
 import java.util.Objects;
 
-public class Tetrahedron implements Comparable<Tetrahedron> {
+public class Tetrahedron {
 
     private int id;
     private double ribLength;
@@ -10,14 +10,15 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
     private Point pointB;
     private Point pointC;
 
+
+    public Tetrahedron() {
+    }
+
     public Tetrahedron(double ribLength, Point pointA, Point pointB, Point pointC) {
         this.ribLength = ribLength;
         this.pointA = pointA;
         this.pointB = pointB;
         this.pointC = pointC;
-    }
-
-    public Tetrahedron() {
     }
 
     public Tetrahedron(double ribLength) {
@@ -55,6 +56,14 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
         this.ribLength = ribLength;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public Point getPointA() {
         return pointA;
     }
@@ -79,15 +88,6 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
         this.pointC = pointC;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        int idMaximum = 9999;
-        this.id = (int) ((Math.random() * (idMaximum - id)) + id);
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -107,26 +107,5 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
     @Override
     public int hashCode() {
         return Objects.hash(id, ribLength, pointA, pointB, pointC);
-    }
-
-    @Override
-    public int compareTo(Tetrahedron tetrahedron) {
-        if (this.ribLength < tetrahedron.ribLength) {
-            return -1;
-        } else if (tetrahedron.ribLength < this.ribLength) {
-            return 1;
-        }
-        return 0;
-    }
-
-    @Override
-    public String toString() {
-        return "Tetrahedron{" +
-                "id=" + id +
-                ", ribLength=" + ribLength +
-                ", pointA=" + pointA +
-                ", pointB=" + pointB +
-                ", pointC=" + pointC +
-                '}';
     }
 }

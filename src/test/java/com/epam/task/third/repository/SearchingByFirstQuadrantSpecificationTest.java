@@ -12,7 +12,6 @@ public class SearchingByFirstQuadrantSpecificationTest {
 
     @Test
     public void isConformsToShouldReturnTrue() {
-
         Point firstPointA = new Point(1.0, 1.0);
         Point firstPointB = new Point(2.0, 2.0);
         Point firstPointC = new Point(3.0, 3.0);

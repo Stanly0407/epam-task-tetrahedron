@@ -11,7 +11,7 @@ public class FigureCreatorTest {
     private static final String TESTED_LINE = "8.0 2.0 2.0 8.0 2.0 5.0 7.5";
 
     @Test
-    public void shouldCreateFigureFromValidLine() {
+    public void shouldCreateFigureFromLine() {
         Point pointA = new Point(2.0, 2.0);
         Point pointB = new Point(8.0, 2.0);
         Point pointC = new Point(5.0, 7.5);

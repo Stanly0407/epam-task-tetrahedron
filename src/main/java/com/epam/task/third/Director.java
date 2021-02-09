@@ -33,8 +33,7 @@ public class Director {
 
         try {
             List<String> lines = new ArrayList<>(dataReader.readDataFromFile(filename));
-            for (int i = 0; i < lines.size(); i++) {
-                String line = lines.get(i);
+            for (String line : lines){
                 if (dataValidator.validateLineContent(line)) {
                     Tetrahedron tetrahedron = figureCreator.createFigure(line);
                     setTetrahedronId(tetrahedron);

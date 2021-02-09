@@ -21,7 +21,7 @@ public class DataReaderTest {
     }
 
     @Test (expected = PathException.class)
-    public void readDataTestShouldTrowsPathException() throws DataException, PathException {
+    public void readDataTestShouldThrowsPathException() throws DataException, PathException {
         List<String> lines = new ArrayList<>(dataReader.readDataFromFile(WRONG_PATH));
     }
 }
