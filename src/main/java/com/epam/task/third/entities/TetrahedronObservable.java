@@ -25,6 +25,6 @@ public class TetrahedronObservable extends Tetrahedron implements Observable {
         for (Observer observer : observers){
             observer.updateParameters(this);
         }
-        LOGGER.debug("All observers notified about changing Tetrahedron");
+        LOGGER.debug("Notifying observers about changing Tetrahedron");
     }
 }

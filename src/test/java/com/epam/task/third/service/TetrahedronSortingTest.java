@@ -55,5 +55,4 @@ public class TetrahedronSortingTest {
         tetrahedronSorting.sortByCoordinateY(testedTetrahedrons);
         Assert.assertEquals(expectedSortedTetrahedrons, testedTetrahedrons);
     }
-
 }

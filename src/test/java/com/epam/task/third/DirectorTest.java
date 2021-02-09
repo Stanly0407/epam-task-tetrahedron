@@ -7,7 +7,6 @@ import com.epam.task.third.entities.Point;
 import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
-import com.epam.task.third.parsing.ValidateProcessException;
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -25,7 +24,7 @@ public class DirectorTest {
     private final static String TEST_DATA = "./src/test/resources/input.txt";
 
     @Test
-    public void shouldMakeValidArraysFromFileData() throws DataException, PathException, ValidateProcessException {
+    public void shouldMakeValidArraysFromFileData() throws DataException, PathException {
 
         DataReader dataReader = Mockito.mock(DataReader.class);
         when(dataReader.readDataFromFile(anyString())).thenReturn(Collections.singletonList(TEST_DATA));

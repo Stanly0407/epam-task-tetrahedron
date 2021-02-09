@@ -84,7 +84,8 @@ public class Tetrahedron implements Comparable<Tetrahedron> {
     }
 
     public void setId(int id) {
-        this.id = id;
+        int idMaximum = 9999;
+        this.id = (int) ((Math.random() * (idMaximum - id)) + id);
     }
 
     @Override

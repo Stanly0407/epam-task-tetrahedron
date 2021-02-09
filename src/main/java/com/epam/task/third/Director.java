@@ -6,7 +6,6 @@ import com.epam.task.third.data.PathException;
 import com.epam.task.third.entities.Tetrahedron;
 import com.epam.task.third.parsing.DataValidator;
 import com.epam.task.third.parsing.FigureCreator;
-import com.epam.task.third.parsing.ValidateProcessException;
 import org.apache.log4j.Logger;
 
 import java.util.ArrayList;
@@ -20,6 +19,9 @@ public class Director {
     private DataValidator dataValidator;
     private FigureCreator figureCreator;
 
+    private static final int ID_MAXIMUM = 9999;
+    private static final int ID_MINIMUM = 1000;
+
     public Director(DataReader dataReader, DataValidator dataValidator, FigureCreator figureCreator) {
         this.dataReader = dataReader;
         this.dataValidator = dataValidator;
@@ -28,20 +30,26 @@ public class Director {
 
     public List<Tetrahedron> createFiguresFromFileData(String filename) {
         List<Tetrahedron> createdFigures = new ArrayList<>();
+
         try {
             List<String> lines = new ArrayList<>(dataReader.readDataFromFile(filename));
             for (int i = 0; i < lines.size(); i++) {
                 String line = lines.get(i);
                 if (dataValidator.validateLineContent(line)) {
                     Tetrahedron tetrahedron = figureCreator.createFigure(line);
-                    tetrahedron.setId(i);
+                    setTetrahedronId(tetrahedron);
                     createdFigures.add(tetrahedron);
                 }
             }
-        } catch (DataException | PathException | ValidateProcessException e) {
+        } catch (DataException | PathException  e) {
             LOGGER.error(e.getMessage(), e);
             e.printStackTrace();
         }
+        LOGGER.info("The Tetrahedron figures was successfully created from file data");
         return createdFigures;
+    }
+
+    public void setTetrahedronId (Tetrahedron tetrahedron){
+        tetrahedron.setId((int) ((Math.random()*(ID_MAXIMUM - ID_MINIMUM)) + ID_MINIMUM));
     }
 }
